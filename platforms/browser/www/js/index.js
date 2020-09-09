@@ -56,3 +56,20 @@ function callBeep() {
 function callVibration() {
     navigator.vibrate(3000);
 }
+
+function takePicture() {
+    navigator.camera.getPicture(onSuccess, onFail,
+        {
+            quality: 50,
+            allowEdit: false,
+            destinationType: Camera.DestinationType.FILE_URI
+    });
+}
+function onSuccess(url) {
+    alert(url);
+   var image = document.getElementById('imageContainer');
+   image.innerHTML = '<img src="' + url + '" width="50%"/>';
+}
+function onFail(message) {
+    alert('Failed because: ' + message);
+}
